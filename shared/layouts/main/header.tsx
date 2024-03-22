@@ -7,15 +7,23 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 
-import { paths } from 'app/routes/paths';
+import { paths } from '#shared/paths';
 
-import { useResponsive, useOffSetTop } from '#shared/hooks';
+import { useOffSetTop } from '#shared/hooks/useOffsetTop';
+import { useResponsive } from '#shared/hooks/useResponsive';
 
-import { bgBlur } from 'shared/theme/css';
+import { bgBlur } from '#shared/theme/css';
+
+import { Logo } from '#shared/components';
+import { Label } from '#shared/components';
 
 import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';
-
+import { HEADER } from '#shared/layouts/main/simple/config-layout';
+import Searchbar from '../common/searchbar';
+import { navConfig } from './config-navigation';
+import HeaderShadow from '../common/header-shadow';
+import SettingsButton from '../common/settings-button';
 
 // ----------------------------------------------------------------------
 
@@ -33,8 +41,25 @@ export default function Header({ headerOnDark }: Props) {
   const renderContent = (
     <>
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
-        
-       
+        <Logo />
+
+        <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
+          <Label
+            color="info"
+            sx={{
+              ml: 0.5,
+              px: 0.5,
+              top: -14,
+              left: 60,
+              height: 20,
+              fontSize: 11,
+              cursor: 'pointer',
+              position: 'absolute',
+            }}
+          >
+            v2.4.0
+          </Label>
+        </Link>
       </Box>
 
       <>
@@ -46,6 +71,7 @@ export default function Header({ headerOnDark }: Props) {
             display: { xs: 'none', md: 'flex' },
           }}
         >
+          <NavDesktop data={navConfig} />
         </Stack>
 
         <Box sx={{ flexGrow: { xs: 1, md: 'unset' } }} />
@@ -53,7 +79,9 @@ export default function Header({ headerOnDark }: Props) {
 
       <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
         <Stack spacing={1} direction="row" alignItems="center">
-      
+          <Searchbar />
+
+          <SettingsButton />
         </Stack>
 
         <Button
@@ -70,6 +98,7 @@ export default function Header({ headerOnDark }: Props) {
         </Button>
       </Stack>
 
+      {!mdUp && <NavMobile data={navConfig} />}
     </>
   );
 
@@ -79,7 +108,8 @@ export default function Header({ headerOnDark }: Props) {
         disableGutters
         sx={{
           height: {
-           
+            xs: HEADER.H_MOBILE,
+            md: HEADER.H_DESKTOP,
           },
           transition: theme.transitions.create(['height', 'background-color'], {
             easing: theme.transitions.easing.easeInOut,
@@ -92,7 +122,7 @@ export default function Header({ headerOnDark }: Props) {
             ...bgBlur({ color: theme.palette.background.default }),
             color: 'text.primary',
             height: {
-  
+              md: HEADER.H_DESKTOP - 16,
             },
           }),
         }}
@@ -109,6 +139,7 @@ export default function Header({ headerOnDark }: Props) {
         </Container>
       </Toolbar>
 
+      {offset && <HeaderShadow />}
     </AppBar>
   );
 }

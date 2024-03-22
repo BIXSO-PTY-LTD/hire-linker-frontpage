@@ -5,6 +5,7 @@ import { LanguageProvider, LoadingProvider, SettingsProvider } from '#shared/con
 import { BlankLayout } from '#shared/layouts';
 import ThemeProvider from '#shared/theme';
 import { I_Children } from '#shared/typescript';
+import { MotionLazy } from '#shared/components/animate/motion-lazy';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.scss';
@@ -31,11 +32,13 @@ export default function RootLayout({ children }: Readonly<I_Children>) {
                     }}
                 >
                     <ThemeProvider>
+                    <MotionLazy>
                         <LanguageProvider>
                             <LoadingProvider>
                                 <BlankLayout>{children}</BlankLayout>
                             </LoadingProvider>
                         </LanguageProvider>
+                        </MotionLazy>
                     </ThemeProvider>
                 </SettingsProvider>
             </body>

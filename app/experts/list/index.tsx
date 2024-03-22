@@ -3,72 +3,51 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { SvgColor } from '#shared/components';
-
-import { T_ExpertProps } from '#shared/typescript';
+import { T_TeamMemberProps } from '#shared/typescript/member';
+import { TravelTeamItem } from '#components/experts/list/item';
 
 type Props = {
-    brands: T_ExpertProps[];
+    members: T_TeamMemberProps[];
 };
 
-export function ExpertListPage({ brands }: Props) {
+export function ExpertListPage({ members }: Props) {
     return (
         <Container
             sx={{
-                pt: 5,
-                pb: { xs: 10, md: 15 },
+                py: { xs: 5, md: 10 },
             }}
         >
-            <Box
+            <Stack
+                spacing={3}
                 sx={{
-                    gap: 3,
-                    display: 'grid',
-                    textAlign: { xs: 'center', md: 'left' },
-                    gridTemplateColumns: {
-                        xs: 'repeat(1, 1fr)',
-                        md: 'repeat(2, 1fr)',
-                    },
+                    mx: 'auto',
+                    maxWidth: 480,
+                    textAlign: 'center',
+                    mb: { xs: 8, md: 10 },
                 }}
             >
-                <Typography variant="h2">Our Clients</Typography>
+                <Typography variant="h2">Our Team</Typography>
 
-                <Stack spacing={2}>
-                    <Typography variant="h4" paragraph>
-                        Enhance Your Life By Having A Sense Of Purpose
-                    </Typography>
-
-                    <Typography sx={{ color: 'text.secondary' }}>
-                        Around the world, food-borne illnesses have become increasingly common. In the United
-                        States alone, millions of people get a food-related illness each year.
-                    </Typography>
-                </Stack>
-            </Box>
+                <Typography sx={{ color: 'text.secondary' }}>
+                    Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis
+                    ante odio sit amet eros.
+                </Typography>
+            </Stack>
 
             <Box
                 sx={{
                     columnGap: 3,
                     display: 'grid',
-                    mt: { xs: 8, md: 15 },
                     rowGap: { xs: 4, md: 5 },
                     gridTemplateColumns: {
-                        xs: 'repeat(2, 1fr)',
-                        sm: 'repeat(3, 1fr)',
+                        xs: 'repeat(1, 1fr)',
+                        sm: 'repeat(2, 1fr)',
                         md: 'repeat(4, 1fr)',
                     },
                 }}
             >
-                {brands.map((brand) => (
-                    <SvgColor
-                        key={brand.id}
-                        src={brand.image}
-                        sx={{
-                            width: 106,
-                            height: 32,
-                            color: 'text.secondary',
-                            mr: { xs: 'auto' },
-                            ml: { xs: 'auto', md: 'unset' },
-                        }}
-                    />
+                {members.map((member) => (
+                    <TravelTeamItem key={member.id} member={member} />
                 ))}
             </Box>
         </Container>

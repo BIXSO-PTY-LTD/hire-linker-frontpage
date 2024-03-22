@@ -1,6 +1,7 @@
 import Box, { BoxProps } from '@mui/material/Box';
 
 import Header from './header';
+import { HEADER } from './simple/config-layout';
 
 // ----------------------------------------------------------------------
 
@@ -10,7 +11,7 @@ type Props = BoxProps & {
   disabledSpacing?: boolean;
 };
 
-export function MainLayout({
+export default function MainLayout({
   children,
   headerOnDark = false,
   disabledSpacing = false,
@@ -33,6 +34,7 @@ export function MainLayout({
         {!(disabledSpacing || headerOnDark) && (
           <Box
             sx={{
+              height: { xs: HEADER.H_MOBILE, md: HEADER.H_DESKTOP },
             }}
           />
         )}

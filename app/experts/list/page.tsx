@@ -1,38 +1,26 @@
 import { ExpertListPage } from './index';
+import { mock } from '#shared/mock';
 
 export const metadata = {
     title: 'Expert List',
 };
 
-const BRANDS_NAME = [
-    'airbnb',
-    'dropbox',
-    'facebook',
-    'google',
-    'heroku',
-    'lenovo',
-    'microsoft',
-    'netflix',
-    'slack',
-    'spotify',
-    'tripadvisor',
-    'vimeo',
-];
 
-export const _id = [...Array(40)].map(
-    (_, index) => `e99f09a7-dd88-49d5-b1c8-1daf80c2d7b${index + 1}`
-);
-
-const id = (index: number) => _id[index]
-
-export const _brands = BRANDS_NAME.map((brand, index) => ({
-    id: id(index),
-    name: brand,
-    image: `/assets/logo/${brand}.svg`,
+export const members = [...Array(8)].map((_, index) => ({
+    id: mock.id(index),
+    role: mock.role(index),
+    name: mock.fullName(index),
+    photo: `/assets/images/portrait/portrait_${index + 1}.jpg`,
+    socialLinks: {
+        facebook: `facebook/${mock.fullName(index)}`,
+        instagram: `instagram/${mock.fullName(index)}`,
+        linkedin: `linkedin/${mock.fullName(index)}`,
+        twitter: `twitter/${mock.fullName(index)}`,
+    },
 }));
 
 const ExpertListPageRoute = () => {
-    return <ExpertListPage brands={_brands} />;
+    return <ExpertListPage members={members} />;
 };
 
 export default ExpertListPageRoute;

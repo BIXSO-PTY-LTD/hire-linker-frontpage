@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 
 export * from './language';
 export * from './loading';
-export * from './expert';
 
 export type T_Any =
     | {

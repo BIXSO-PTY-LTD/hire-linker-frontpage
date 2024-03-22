@@ -8,3 +8,5 @@ export * from './useLoading';
 export * from './useLocalStorage';
 export * from './useResponsive';
 export * from './useOffsetTop';
+export * from './useActiveLink';
+export * from './usePathname';

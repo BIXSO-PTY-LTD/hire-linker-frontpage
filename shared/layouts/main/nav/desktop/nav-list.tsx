@@ -9,14 +9,12 @@ import Portal from '@mui/material/Portal';
 import Grid from '@mui/material/Unstable_Grid2';
 import ListSubheader from '@mui/material/ListSubheader';
 
-import { usePathname } from 'src/routes/hooks';
-import { RouterLink } from 'src/routes/components';
-import { useActiveLink } from 'src/routes/hooks/use-active-link';
-
-import { useBoolean } from 'src/hooks/use-boolean';
-
-import Label from 'src/components/label';
-import Image from 'src/components/image';
+import { usePathname } from '#shared/hooks';
+import { RouterLink } from '#shared/components';
+import { useActiveLink } from '#shared/hooks';
+import { useBoolean } from '#shared/hooks';
+import { Label } from '#shared/components';
+import { Image } from '#shared/components';
 
 import NavItem from './nav-item';
 import { NavListProps, NavSubListProps } from '../types';

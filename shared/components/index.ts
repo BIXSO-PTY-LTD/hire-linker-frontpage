@@ -6,4 +6,6 @@ export * from './image';
 export * from './router-link';
 export * from './spinner';
 export * from './text-field';
-export * from './svg-color'
+export * from './label';
+export * from './nav-section';
+export * from './logo';

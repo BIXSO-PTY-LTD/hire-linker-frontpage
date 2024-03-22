@@ -6,18 +6,18 @@ import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 
-import { paths } from 'src/routes/paths';
-import { usePathname } from 'src/routes/hooks';
+import { paths } from '#shared/paths';
+import { usePathname } from '#shared/hooks';
 
-import { useBoolean } from 'src/hooks/use-boolean';
+import { useBoolean } from '#shared/hooks';
 
-import Logo from 'src/components/logo';
-import Iconify from 'src/components/iconify';
-import Scrollbar from 'src/components/scrollbar';
+import { Logo } from '#shared/components';
+import { Iconify}  from '#shared/components';
+import Scrollbar from '#shared/components/scrollbar';
 
 import NavList from './nav-list';
 import { NavProps } from '../types';
-import { NAV } from '../../../config-layout';
+import { NAV } from '#shared/layouts/main/simple/config-layout';
 
 // ----------------------------------------------------------------------
 

@@ -1,6 +1,8 @@
 import { useScroll } from 'framer-motion';
 import { useMemo, useState, useEffect, useCallback } from 'react';
 
+// ----------------------------------------------------------------------
+
 type ReturnType = boolean;
 
 interface UseScrollOptions extends Omit<ScrollOptions, 'container' | 'target'> {
@@ -31,3 +33,11 @@ export function useOffSetTop(top = 0, options?: UseScrollOptions): ReturnType {
 
   return memoizedValue;
 }
+
+// Usage
+// const offset = useOffSetTop(100);
+
+// Or
+// const offset = useOffSetTop(100, {
+//   container: ref,
+// });

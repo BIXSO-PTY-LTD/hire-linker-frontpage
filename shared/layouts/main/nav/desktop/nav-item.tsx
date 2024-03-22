@@ -4,9 +4,9 @@ import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import { RouterLink } from 'src/routes/components';
+import { RouterLink } from '#shared/components';
 
-import Iconify from 'src/components/iconify';
+import { Iconify}  from '#shared/components';
 
 import { NavItemProps, NavItemStateProps } from '../types';
 
