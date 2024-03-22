@@ -12,66 +12,64 @@ import { usePathname } from '#shared/hooks';
 import { useBoolean } from '#shared/hooks';
 
 import { Logo } from '#shared/components';
-import { Iconify}  from '#shared/components';
+import { Iconify } from '#shared/components';
 import Scrollbar from '#shared/components/scrollbar';
 
 import NavList from './nav-list';
 import { NavProps } from '../types';
 import { NAV } from '#shared/layouts/main/simple/config-layout';
 
-// ----------------------------------------------------------------------
-
 export default function NavMobile({ data }: NavProps) {
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  const mobileOpen = useBoolean();
+    const mobileOpen = useBoolean();
 
-  useEffect(() => {
-    if (mobileOpen.value) {
-      mobileOpen.onFalse();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+    useEffect(() => {
+        if (mobileOpen.value) {
+            mobileOpen.onFalse();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
 
-  return (
-    <>
-      <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
-        <Iconify icon="carbon:menu" />
-      </IconButton>
+    return (
+        <>
+            <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
+                <Iconify icon="carbon:menu" />
+            </IconButton>
 
-      <Drawer
-        open={mobileOpen.value}
-        onClose={mobileOpen.onFalse}
-        PaperProps={{
-          sx: {
-            pb: 5,
-            width: NAV.W_VERTICAL,
-          },
-        }}
-      >
-        <Scrollbar>
-          <Logo sx={{ mx: 2.5, my: 3 }} />
-
-          <List component="nav" disablePadding>
-            {data.map((list) => (
-              <NavList key={list.title} data={list} />
-            ))}
-          </List>
-
-          <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="inherit"
-              href={paths.zoneStore}
-              target="_blank"
-              rel="noopener"
+            <Drawer
+                open={mobileOpen.value}
+                onClose={mobileOpen.onFalse}
+                PaperProps={{
+                    sx: {
+                        pb: 5,
+                        width: NAV.W_VERTICAL,
+                    },
+                }}
             >
-              Buy Now
-            </Button>
-          </Stack>
-        </Scrollbar>
-      </Drawer>
-    </>
-  );
+                <Scrollbar>
+                    <Logo sx={{ mx: 2.5, my: 3 }} />
+
+                    <List component="nav" disablePadding>
+                        {data.map((list) => (
+                            <NavList key={list.title} data={list} />
+                        ))}
+                    </List>
+
+                    <Stack spacing={1.5} sx={{ p: 3 }}>
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            color="inherit"
+                            href={paths.zoneStore}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Buy Now
+                        </Button>
+                    </Stack>
+                </Scrollbar>
+            </Drawer>
+        </>
+    );
 }

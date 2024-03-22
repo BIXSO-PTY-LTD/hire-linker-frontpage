@@ -32,12 +32,12 @@ export default function RootLayout({ children }: Readonly<I_Children>) {
                     }}
                 >
                     <ThemeProvider>
-                    <MotionLazy>
-                        <LanguageProvider>
-                            <LoadingProvider>
-                                <BlankLayout>{children}</BlankLayout>
-                            </LoadingProvider>
-                        </LanguageProvider>
+                        <MotionLazy>
+                            <LanguageProvider>
+                                <LoadingProvider>
+                                    <BlankLayout>{children}</BlankLayout>
+                                </LoadingProvider>
+                            </LanguageProvider>
                         </MotionLazy>
                     </ThemeProvider>
                 </SettingsProvider>

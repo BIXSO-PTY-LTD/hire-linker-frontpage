@@ -1,17 +1,15 @@
 import { mock } from './_mock';
 import { _tags } from './assets';
 
-// ----------------------------------------------------------------------
-
 const TITLE = [
-  'Bank of America',
-  'Technology Nixon',
-  'Turn Key Smart',
-  'Digital Shose',
-  'Action Car',
-  'The Zone UI',
-  'Minimal UI',
-  'Network Firefox',
+    'Bank of America',
+    'Technology Nixon',
+    'Turn Key Smart',
+    'Digital Shose',
+    'Action Car',
+    'The Zone UI',
+    'Minimal UI',
+    'Network Firefox',
 ];
 
 const CONTENT = `
@@ -49,29 +47,29 @@ const CONTENT = `
 `;
 
 export const _caseStudies = TITLE.map((_, index) => {
-  const galleryImgs = [
-    mock.image.marketing(0),
-    mock.image.marketing(1),
-    mock.image.marketing(2),
-    mock.image.marketing(3),
-    mock.image.marketing(4),
-    mock.image.marketing(5),
-  ];
+    const galleryImgs = [
+        mock.image.marketing(0),
+        mock.image.marketing(1),
+        mock.image.marketing(2),
+        mock.image.marketing(3),
+        mock.image.marketing(4),
+        mock.image.marketing(5),
+    ];
 
-  return {
-    id: mock.id(index),
-    content: CONTENT,
-    title: TITLE[index],
-    category: _tags[index],
-    createdAt: mock.time(index),
-    website: 'https://example.com/',
-    description: mock.description(index),
-    heroUrl: '/assets/images/marketing/marketing_post_hero.jpg',
-    coverUrl: `/assets/images/marketing/marketing_${index + 1}.jpg`,
-    how_we_work:
-      'Nullam tincidunt adipiscing enim. Mauris sollicitudin fermentum libero. Pellentesque auctor neque nec urna. Sed fringi',
-    results:
-      'Nullam tincidunt adipiscing enim. Mauris sollicitudin fermentum libero. Pellentesque auctor neque nec urna. Sed fringi',
-    galleryImgs,
-  };
+    return {
+        id: mock.id(index),
+        content: CONTENT,
+        title: TITLE[index],
+        category: _tags[index],
+        createdAt: mock.time(index),
+        website: 'https://example.com/',
+        description: mock.description(index),
+        heroUrl: '/assets/images/marketing/marketing_post_hero.jpg',
+        coverUrl: `/assets/images/marketing/marketing_${index + 1}.jpg`,
+        how_we_work:
+            'Nullam tincidunt adipiscing enim. Mauris sollicitudin fermentum libero. Pellentesque auctor neque nec urna. Sed fringi',
+        results:
+            'Nullam tincidunt adipiscing enim. Mauris sollicitudin fermentum libero. Pellentesque auctor neque nec urna. Sed fringi',
+        galleryImgs,
+    };
 });

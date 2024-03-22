@@ -5,8 +5,6 @@ import { countries } from '#shared/mock/data';
 import { mock } from './_mock';
 import { _tags } from './assets';
 
-// ----------------------------------------------------------------------
-
 const CONTENT = `
 <h5>Job Description</h5>
 <br/>
@@ -44,102 +42,102 @@ const CONTENT = `
 `;
 
 export const JOB_BENEFIT_OPTIONS = [
-  { value: 'Free parking', label: 'Free parking' },
-  { value: 'Bonus commission', label: 'Bonus commission' },
-  { value: 'Travel', label: 'Travel' },
-  { value: 'Device support', label: 'Device support' },
-  { value: 'Health care', label: 'Health care' },
-  { value: 'Training', label: 'Training' },
-  { value: 'Health Insurance', label: 'Health Insurance' },
-  { value: 'Retirement Plans', label: 'Retirement Plans' },
-  { value: 'Paid Time Off', label: 'Paid Time Off' },
-  { value: 'Flexible Work Schedule', label: 'Flexible Work Schedule' },
+    { value: 'Free parking', label: 'Free parking' },
+    { value: 'Bonus commission', label: 'Bonus commission' },
+    { value: 'Travel', label: 'Travel' },
+    { value: 'Device support', label: 'Device support' },
+    { value: 'Health care', label: 'Health care' },
+    { value: 'Training', label: 'Training' },
+    { value: 'Health Insurance', label: 'Health Insurance' },
+    { value: 'Retirement Plans', label: 'Retirement Plans' },
+    { value: 'Paid Time Off', label: 'Paid Time Off' },
+    { value: 'Flexible Work Schedule', label: 'Flexible Work Schedule' },
 ];
 
 export const _jobs = [...Array(12)].map((_, index) => {
-  const benefits = JOB_BENEFIT_OPTIONS.slice(0, 3).map((option) => option.label);
+    const benefits = JOB_BENEFIT_OPTIONS.slice(0, 3).map((option) => option.label);
 
-  const type = (index % 2 && 'part time') || (index % 4 && 'freelance') || 'full time';
+    const type = (index % 2 && 'part time') || (index % 4 && 'freelance') || 'full time';
 
-  const level = (index % 2 && 'manager') || (index % 4 && 'intern/student') || 'No experience';
+    const level = (index % 2 && 'manager') || (index % 4 && 'intern/student') || 'No experience';
 
-  const location = countries.map((option) => option.label)[index + 1];
+    const location = countries.map((option) => option.label)[index + 1];
 
-  const languages = ['Russian', 'Spanish', 'English'];
+    const languages = ['Russian', 'Spanish', 'English'];
 
-  const skills = _tags.slice(0, 5);
+    const skills = _tags.slice(0, 5);
 
-  const company = {
-    name: mock.companyName(index),
-    logo: mock.image.company(index),
-  };
+    const company = {
+        name: mock.companyName(index),
+        logo: mock.image.company(index),
+    };
 
-  const locationMap = [
-    {
-      address: mock.fullAddress(index),
-      phoneNumber: mock.phoneNumber(index),
-      email: mock.email(index),
-      latlng: [33, 65],
-    },
-  ];
+    const locationMap = [
+        {
+            address: mock.fullAddress(index),
+            phoneNumber: mock.phoneNumber(index),
+            email: mock.email(index),
+            latlng: [33, 65],
+        },
+    ];
 
-  return {
-    id: mock.id(index),
-    type,
-    level,
-    skills,
-    company,
-    benefits,
-    location,
-    languages,
-    locationMap,
-    content: CONTENT,
-    createdAt: new Date(),
-    experience: index + 1,
-    category: _tags[index],
-    slug: mock.jobTitle(index),
-    urgent: [1, 3].includes(index),
-    favorited: [2, 4].includes(index),
-    totalViews: mock.number.nativeL(index),
-    deadline: add(new Date(), { months: index }),
-    salary: (index % 3 && 12000) || 'competitive',
-    shareLinks: {
-      facebook: `facebook/user-name`,
-      instagram: `instagram/user-name`,
-      linkedin: `linkedin/user-name`,
-      twitter: `twitter/user-name`,
-    },
-  };
+    return {
+        id: mock.id(index),
+        type,
+        level,
+        skills,
+        company,
+        benefits,
+        location,
+        languages,
+        locationMap,
+        content: CONTENT,
+        createdAt: new Date(),
+        experience: index + 1,
+        category: _tags[index],
+        slug: mock.jobTitle(index),
+        urgent: [1, 3].includes(index),
+        favorited: [2, 4].includes(index),
+        totalViews: mock.number.nativeL(index),
+        deadline: add(new Date(), { months: index }),
+        salary: (index % 3 && 12000) || 'competitive',
+        shareLinks: {
+            facebook: `facebook/user-name`,
+            instagram: `instagram/user-name`,
+            linkedin: `linkedin/user-name`,
+            twitter: `twitter/user-name`,
+        },
+    };
 });
 
 export const _jobsByCompanies = [...Array(12)].map((_, index) => ({
-  id: mock.id(index),
-  name: mock.companyName(index),
-  logo: mock.image.company(index),
-  totalJobs: 101 + index,
+    id: mock.id(index),
+    name: mock.companyName(index),
+    logo: mock.image.company(index),
+    totalJobs: 101 + index,
 }));
 
 const ICONS = [
-  '/assets/icons/ic_money.svg',
-  '/assets/icons/ic_marketing_bullhorn.svg',
-  '/assets/icons/ic_creativity.svg',
-  '/assets/icons/ic_web_programming.svg',
-  '/assets/icons/ic_chip.svg',
-  '/assets/icons/ic_customer_service.svg',
-  '/assets/icons/ic_stethoscope.svg',
-  '/assets/icons/ic_banking.svg',
+    '/assets/icons/ic_money.svg',
+    '/assets/icons/ic_marketing_bullhorn.svg',
+    '/assets/icons/ic_creativity.svg',
+    '/assets/icons/ic_web_programming.svg',
+    '/assets/icons/ic_chip.svg',
+    '/assets/icons/ic_customer_service.svg',
+    '/assets/icons/ic_stethoscope.svg',
+    '/assets/icons/ic_banking.svg',
 ];
 
 export const _jobsByCategories = [...Array(8)].map((_, index) => ({
-  id: mock.id(index),
-  icon: ICONS[index],
-  name: mock.jobTitle(index),
-  totalJobs: mock.number.nativeM(index),
+    id: mock.id(index),
+    icon: ICONS[index],
+    name: mock.jobTitle(index),
+    totalJobs: mock.number.nativeM(index),
 }));
 
 export const _jobsByCountries = [...Array(12)].map((_, index) => ({
-  id: mock.id(index),
-  coverUrl: mock.image.travel(index),
-  totalJobs: mock.number.nativeM(index),
-  location: countries.map((option) => option.label)[index + 1],
+    id: mock.id(index),
+    coverUrl: mock.image.travel(index),
+    totalJobs: mock.number.nativeM(index),
+    location: countries.map((option) => option.label)[index + 1],
 }));

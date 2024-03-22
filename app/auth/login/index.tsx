@@ -76,8 +76,6 @@ export const LoginPage = () => {
             <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="carbon:logo-facebook" width={24} sx={{ color: '#1877F2' }} />
             </Button>
-
-           
         </Stack>
     );
 

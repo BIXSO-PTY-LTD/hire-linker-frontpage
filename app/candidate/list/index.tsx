@@ -1,3 +1,4 @@
+'use client';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -5,12 +6,15 @@ import Typography from '@mui/material/Typography';
 
 import { T_TeamMemberProps } from '#shared/typescript/member';
 import { TravelTeamItem } from '#components/experts/list/item';
+import { useTranslations } from '#shared/hooks';
 
 type Props = {
     members: T_TeamMemberProps[];
 };
 
 export function ExpertListPage({ members }: Props) {
+    const translate = useTranslations();
+
     return (
         <Container
             sx={{
@@ -26,11 +30,11 @@ export function ExpertListPage({ members }: Props) {
                     mb: { xs: 8, md: 10 },
                 }}
             >
-                <Typography variant="h2">Our Team</Typography>
+                <Typography variant="h2">{translate('candidate.list.our-team')}</Typography>
 
                 <Typography sx={{ color: 'text.secondary' }}>
-                    Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis
-                    ante odio sit amet eros.
+                    Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio
+                    sit amet eros.
                 </Typography>
             </Stack>
 

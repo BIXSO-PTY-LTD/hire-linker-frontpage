@@ -5,7 +5,6 @@ export const metadata = {
     title: 'Expert List',
 };
 
-
 export const members = [...Array(8)].map((_, index) => ({
     id: mock.id(index),
     role: mock.role(index),

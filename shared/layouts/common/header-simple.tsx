@@ -17,58 +17,45 @@ import { HEADER } from '#shared/layouts/main/simple/config-layout';
 import HeaderShadow from './header-shadow';
 import SettingsButton from './settings-button';
 
-// ----------------------------------------------------------------------
-
 export function HeaderSimple() {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const offset = useOffSetTop(HEADER.H_DESKTOP);
+    const offset = useOffSetTop(HEADER.H_DESKTOP);
 
-  return (
-    <AppBar>
-      <Toolbar
-        sx={{
-          height: {
-            xs: HEADER.H_MOBILE,
-            md: HEADER.H_DESKTOP,
-          },
-          transition: theme.transitions.create(['height'], {
-            easing: theme.transitions.easing.easeInOut,
-            duration: theme.transitions.duration.shorter,
-          }),
-          ...(offset && {
-            ...bgBlur({
-              color: theme.palette.background.default,
-            }),
-            height: {
-              md: HEADER.H_DESKTOP_OFFSET,
-            },
-          }),
-        }}
-      >
-        <Logo />
+    return (
+        <AppBar>
+            <Toolbar
+                sx={{
+                    height: {
+                        xs: HEADER.H_MOBILE,
+                        md: HEADER.H_DESKTOP,
+                    },
+                    transition: theme.transitions.create(['height'], {
+                        easing: theme.transitions.easing.easeInOut,
+                        duration: theme.transitions.duration.shorter,
+                    }),
+                    ...(offset && {
+                        ...bgBlur({
+                            color: theme.palette.background.default,
+                        }),
+                        height: {
+                            md: HEADER.H_DESKTOP_OFFSET,
+                        },
+                    }),
+                }}
+            >
+                <Logo />
 
-        <Stack
-          spacing={1}
-          flexGrow={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="flex-end"
-        >
-          <SettingsButton />
+                <Stack spacing={1} flexGrow={1} direction="row" alignItems="center" justifyContent="flex-end">
+                    <SettingsButton />
 
-          <Link
-            href={paths.support}
-            component={RouterLink}
-            color="inherit"
-            sx={{ typography: 'subtitle2' }}
-          >
-            Need help?
-          </Link>
-        </Stack>
-      </Toolbar>
+                    <Link href={paths.support} component={RouterLink} color="inherit" sx={{ typography: 'subtitle2' }}>
+                        Need help?
+                    </Link>
+                </Stack>
+            </Toolbar>
 
-      {offset && <HeaderShadow />}
-    </AppBar>
-  );
+            {offset && <HeaderShadow />}
+        </AppBar>
+    );
 }
