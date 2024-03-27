@@ -1,6 +1,6 @@
 import { ISocialLinks } from './socials';
 
-export type ITeamMemberProps = {
+export type T_TeamMemberProps = {
     id: string;
     name: string;
     role: string;

@@ -1,8 +1,5 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-
 import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -11,6 +8,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 import { PATHS } from '#app/routes';
 import { Form, Iconify, RouterLink, TextField } from '#shared/components';
@@ -18,6 +18,7 @@ import { useBoolean } from '#shared/hooks';
 
 export const LoginPage = () => {
     const passwordShow = useBoolean();
+    const router = useRouter();
 
     const LoginSchema = Yup.object().shape({
         email: Yup.string().required('Email is required').email('That is not an email'),
@@ -45,7 +46,8 @@ export const LoginPage = () => {
     const onSubmit = handleSubmit(async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 500));
-            reset();
+            // reset();
+            router.push('#');
             console.log('DATA', data);
         } catch (error) {
             console.error(error);
@@ -75,6 +77,10 @@ export const LoginPage = () => {
 
             <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="carbon:logo-facebook" width={24} sx={{ color: '#1877F2' }} />
+            </Button>
+
+            <Button color="inherit" fullWidth variant="outlined" size="large">
+                <Iconify icon="carbon:logo-github" width={24} sx={{ color: 'text.primary' }} />
             </Button>
         </Stack>
     );
