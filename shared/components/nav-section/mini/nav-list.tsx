@@ -1,14 +1,22 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
-
-import Stack from '@mui/material/Stack';
 import Popover from '@mui/material/Popover';
+import Stack from '@mui/material/Stack';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { usePathname } from '#shared/hooks';
-import { useActiveLink } from '#shared/hooks';
-import NavItem from './nav-item';
-import { NavListProps, NavSubListProps } from '../types';
+import { useActiveLink, usePathname } from '#shared/hooks';
+import { T_NavListProps, T_NavSubListProps } from '#shared/typescript';
+import { NavItem } from './nav-item';
 
-export default function NavList({ data, depth, slotProps }: NavListProps) {
+const NavSubList = ({ data, depth, slotProps }: T_NavSubListProps) => {
+    return (
+        <Stack spacing={0.5}>
+            {data.map((list) => (
+                <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps} />
+            ))}
+        </Stack>
+    );
+};
+
+export const NavList = ({ data, depth, slotProps }: T_NavListProps) => {
     const navRef = useRef<HTMLDivElement | null>(null);
 
     const pathname = usePathname();
@@ -89,14 +97,4 @@ export default function NavList({ data, depth, slotProps }: NavListProps) {
             )}
         </>
     );
-}
-
-function NavSubList({ data, depth, slotProps }: NavSubListProps) {
-    return (
-        <Stack spacing={0.5}>
-            {data.map((list) => (
-                <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps} />
-            ))}
-        </Stack>
-    );
-}
+};

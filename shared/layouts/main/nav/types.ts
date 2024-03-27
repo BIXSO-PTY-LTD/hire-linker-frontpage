@@ -1,5 +1,5 @@
-import { StackProps } from '@mui/material/Stack';
 import { ListItemButtonProps } from '@mui/material/ListItemButton';
+import { StackProps } from '@mui/material/Stack';
 
 export type NavItemBaseProps = {
     title: string;
@@ -30,13 +30,8 @@ export type NavListProps = {
 };
 
 export type NavSubListProps = {
-    subheader: string;
-    isNew?: boolean;
-    cover?: string;
-    items: {
-        title: string;
-        path: string;
-    }[];
+    title: string;
+    path: string;
 };
 
 export type NavProps = StackProps & {

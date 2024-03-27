@@ -1,147 +1,16 @@
-import { forwardRef } from 'react';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import ListItemButton from '@mui/material/ListItemButton';
 import Tooltip from '@mui/material/Tooltip';
 import { alpha, styled } from '@mui/material/styles';
-import ListItemButton from '@mui/material/ListItemButton';
+import { forwardRef } from 'react';
 
-import { RouterLink } from '#shared/components';
-
-import { Iconify } from '#shared/components';
-import { NavItemProps, NavItemStateProps } from '../types';
-
-const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
-    (
-        {
-            title,
-            path,
-            icon,
-            info,
-            disabled,
-            caption,
-            roles,
-            //
-            open,
-            depth,
-            active,
-            hasChild,
-            externalLink,
-            currentRole = 'admin',
-            ...other
-        },
-        ref,
-    ) => {
-        const subItem = depth !== 1;
-
-        const renderContent = (
-            <StyledNavItem
-                ref={ref}
-                disableGutters
-                open={open}
-                depth={depth}
-                active={active}
-                disabled={disabled}
-                {...other}
-            >
-                {!subItem && icon && (
-                    <Box component="span" className="icon">
-                        {icon}
-                    </Box>
-                )}
-
-                {subItem && icon ? (
-                    <Box component="span" className="icon">
-                        {icon}
-                    </Box>
-                ) : (
-                    <Box component="span" className="sub-icon" />
-                )}
-
-                {title && (
-                    <Box component="span" sx={{ flex: '1 1 auto', minWidth: 0 }}>
-                        <Box component="span" className="label">
-                            {title}
-                        </Box>
-
-                        {caption && (
-                            <Tooltip title={caption} placement="top-start">
-                                <Box component="span" className="caption">
-                                    {caption}
-                                </Box>
-                            </Tooltip>
-                        )}
-                    </Box>
-                )}
-
-                {info && (
-                    <Box component="span" className="info">
-                        {info}
-                    </Box>
-                )}
-
-                {hasChild && (
-                    <Iconify
-                        width={16}
-                        className="arrow"
-                        icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
-                    />
-                )}
-            </StyledNavItem>
-        );
-
-        // Hidden item by role
-        if (roles && !roles.includes(`${currentRole}`)) {
-            return null;
-        }
-
-        if (hasChild) {
-            return renderContent;
-        }
-
-        if (externalLink)
-            return (
-                <Link
-                    href={path}
-                    target="_blank"
-                    rel="noopener"
-                    color="inherit"
-                    underline="none"
-                    sx={{
-                        ...(disabled && {
-                            cursor: 'default',
-                        }),
-                    }}
-                >
-                    {renderContent}
-                </Link>
-            );
-
-        return (
-            <Link
-                component={RouterLink}
-                href={path}
-                color="inherit"
-                underline="none"
-                sx={{
-                    ...(disabled && {
-                        cursor: 'default',
-                    }),
-                }}
-            >
-                {renderContent}
-            </Link>
-        );
-    },
-);
-
-NavItem.displayName = 'NavItem';
-
-export default NavItem;
+import { Iconify, RouterLink } from '#shared/components';
+import { T_NavItemProps, T_NavItemStateProps } from '#shared/typescript';
 
 const StyledNavItem = styled(ListItemButton, {
     shouldForwardProp: (prop) => prop !== 'active',
-})<NavItemStateProps>(({ active, open, depth, theme }) => {
+})<T_NavItemStateProps>(({ active, open, depth, theme }) => {
     const subItem = depth !== 1;
 
     const opened = open && !active;
@@ -277,3 +146,129 @@ const StyledNavItem = styled(ListItemButton, {
         }),
     };
 });
+
+export const NavItem = forwardRef<HTMLDivElement, T_NavItemProps>(
+    (
+        {
+            title,
+            path,
+            icon,
+            info,
+            disabled,
+            caption,
+            roles,
+            //
+            open,
+            depth,
+            active,
+            hasChild,
+            externalLink,
+            currentRole = 'admin',
+            ...other
+        },
+        ref,
+    ) => {
+        const subItem = depth !== 1;
+
+        const renderContent = (
+            <StyledNavItem
+                ref={ref}
+                disableGutters
+                open={open}
+                depth={depth}
+                active={active}
+                disabled={disabled}
+                {...other}
+            >
+                {!subItem && icon && (
+                    <Box component="span" className="icon">
+                        {icon}
+                    </Box>
+                )}
+
+                {subItem && icon ? (
+                    <Box component="span" className="icon">
+                        {icon}
+                    </Box>
+                ) : (
+                    <Box component="span" className="sub-icon" />
+                )}
+
+                {title && (
+                    <Box component="span" sx={{ flex: '1 1 auto', minWidth: 0 }}>
+                        <Box component="span" className="label">
+                            {title}
+                        </Box>
+
+                        {caption && (
+                            <Tooltip title={caption} placement="top-start">
+                                <Box component="span" className="caption">
+                                    {caption}
+                                </Box>
+                            </Tooltip>
+                        )}
+                    </Box>
+                )}
+
+                {info && (
+                    <Box component="span" className="info">
+                        {info}
+                    </Box>
+                )}
+
+                {hasChild && (
+                    <Iconify
+                        width={16}
+                        className="arrow"
+                        icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
+                    />
+                )}
+            </StyledNavItem>
+        );
+
+        // Hidden item by role
+        if (roles && !roles.includes(`${currentRole}`)) {
+            return null;
+        }
+
+        if (hasChild) {
+            return renderContent;
+        }
+
+        if (externalLink)
+            return (
+                <Link
+                    href={path}
+                    target="_blank"
+                    rel="noopener"
+                    color="inherit"
+                    underline="none"
+                    sx={{
+                        ...(disabled && {
+                            cursor: 'default',
+                        }),
+                    }}
+                >
+                    {renderContent}
+                </Link>
+            );
+
+        return (
+            <Link
+                component={RouterLink}
+                href={path}
+                color="inherit"
+                underline="none"
+                sx={{
+                    ...(disabled && {
+                        cursor: 'default',
+                    }),
+                }}
+            >
+                {renderContent}
+            </Link>
+        );
+    },
+);
+
+NavItem.displayName = 'NavItem';

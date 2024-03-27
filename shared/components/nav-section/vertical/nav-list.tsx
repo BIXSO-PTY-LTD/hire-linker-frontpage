@@ -1,13 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Collapse from '@mui/material/Collapse';
 
-import { usePathname } from '#shared/hooks';
-import { useActiveLink } from '#shared/hooks';
-import NavItem from './nav-item';
-import { NavListProps, NavSubListProps } from '../types';
+import { useActiveLink, usePathname } from '#shared/hooks';
+import { T_NavListProps, T_NavSubListProps } from '#shared/typescript';
+import { NavItem } from './nav-item';
 
-export default function NavList({ data, depth, slotProps }: NavListProps) {
+const NavSubList = ({ data, depth, slotProps }: T_NavSubListProps) => {
+    return (
+        <>
+            {data.map((list) => (
+                <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps} />
+            ))}
+        </>
+    );
+};
+
+export const NavList = ({ data, depth, slotProps }: T_NavListProps) => {
     const pathname = usePathname();
 
     const active = useActiveLink(data.path, !!data.children);
@@ -65,14 +74,4 @@ export default function NavList({ data, depth, slotProps }: NavListProps) {
             )}
         </>
     );
-}
-
-function NavSubList({ data, depth, slotProps }: NavSubListProps) {
-    return (
-        <>
-            {data.map((list) => (
-                <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps} />
-            ))}
-        </>
-    );
-}
+};

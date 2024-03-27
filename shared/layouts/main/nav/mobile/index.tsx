@@ -1,25 +1,18 @@
-import { useEffect } from 'react';
-
-import List from '@mui/material/List';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import Stack from '@mui/material/Stack';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
-import { paths } from '#shared/paths';
-import { usePathname } from '#shared/hooks';
-
+import { Iconify, Logo, Scrollbar } from '#shared/components';
+import { NAV } from '#shared/constants';
 import { useBoolean } from '#shared/hooks';
-
-import { Logo } from '#shared/components';
-import { Iconify } from '#shared/components';
-import Scrollbar from '#shared/components/scrollbar';
-
-import NavList from './nav-list';
 import { NavProps } from '../types';
-import { NAV } from '#shared/layouts/main/simple/config-layout';
+import { NavList } from './nav-list';
 
-export default function NavMobile({ data }: NavProps) {
+export const NavMobile = ({ data }: NavProps) => {
     const pathname = usePathname();
 
     const mobileOpen = useBoolean();
@@ -57,14 +50,7 @@ export default function NavMobile({ data }: NavProps) {
                     </List>
 
                     <Stack spacing={1.5} sx={{ p: 3 }}>
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            color="inherit"
-                            href={paths.zoneStore}
-                            target="_blank"
-                            rel="noopener"
-                        >
+                        <Button fullWidth variant="contained" color="inherit">
                             Buy Now
                         </Button>
                     </Stack>
@@ -72,4 +58,4 @@ export default function NavMobile({ data }: NavProps) {
             </Drawer>
         </>
     );
-}
+};
